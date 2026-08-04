@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <div class="calculadora">
+
+        <input type="text" id="pantalla" readonly>
+
+        <br>
+
+        <button onclick="pantalla.value+='7'">7</button>
+        <button onclick="pantalla.value+='8'">8</button>
+        <button onclick="pantalla.value+='9'">9</button>
+        <button onclick="pantalla.value+='/'">÷</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='4'">4</button>
+        <button onclick="pantalla.value+='5'">5</button>
+        <button onclick="pantalla.value+='6'">6</button>
+        <button onclick="pantalla.value+='*'">×</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='1'">1</button>
+        <button onclick="pantalla.value+='2'">2</button>
+        <button onclick="pantalla.value+='3'">3</button>
+        <button onclick="pantalla.value+='-'">-</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='0'">0</button>
+        <button onclick="pantalla.value+='.'">.</button>
+        <button onclick="pantalla.value+='+'">+</button>
+        <button onclick="pantalla.value=eval(pantalla.value)">=</button>
+
+        <br>
+
+        <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
+        <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
+        <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
+        <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
+
+        <br>
+
+        <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
+        <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
+        <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
+        <button onclick="pantalla.value=''">C</button>
+
+    </div>
+
+</body>
+
+</html>
