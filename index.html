@@ -4,10 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
 
 <body>
+    <title>Calculadora</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculadora {
+            background: #222;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #pantalla {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 60px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="calculadora">
+
+        <input type="text" id="pantalla" readonly>
+
+        <br>
+
+        <button onclick="pantalla.value+='7'">7</button>
+        <button onclick="pantalla.value+='8'">8</button>
+        <button onclick="pantalla.value+='9'">9</button>
+        <button onclick="pantalla.value+='/'">÷</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='4'">4</button>
+        <button onclick="pantalla.value+='5'">5</button>
+        <button onclick="pantalla.value+='6'">6</button>
+        <button onclick="pantalla.value+='*'">×</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='1'">1</button>
+        <button onclick="pantalla.value+='2'">2</button>
+        <button onclick="pantalla.value+='3'">3</button>
+        <button onclick="pantalla.value+='-'">-</button>
+
+        <br>
+
+        <button onclick="pantalla.value+='0'">0</button>
+        <button onclick="pantalla.value+='.'">.</button>
+        <button onclick="pantalla.value+='+'">+</button>
+        <button onclick="pantalla.value=eval(pantalla.value)">=</button>
+
+        <br>
+
+        <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
+        <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
+        <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
+        <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
+
+        <br>
+
+        <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
+        <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
+        <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
+        <button onclick="pantalla.value=''">C</button>
+
+    </div>
+
 
 </body>
 
