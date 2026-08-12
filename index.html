@@ -10,49 +10,101 @@
 
 <body>
     <title>Calculadora</title>
-
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f0f2f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .calculadora {
-            background: #222;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        #pantalla {
+        .calculator-card {
+            max-width: 480px;
             width: 100%;
-            height: 50px;
-            margin-bottom: 15px;
-            font-size: 24px;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .calculator-screen {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
             text-align: right;
-            padding: 10px;
-            box-sizing: border-box;
+            border-bottom: 2px solid #e2e8f0;
         }
 
-        button {
-            width: 60px;
-            height: 50px;
-            margin: 5px;
-            font-size: 18px;
+        .calculator-screen .history {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            min-height: 1.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .calculator-screen .current-output {
+            font-size: 2.2rem;
+            font-weight: 600;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .btn-calc {
+            font-weight: 600;
+            padding: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-calc:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-operation {
+            background-color: #e2e8f0;
+            color: #334155;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #4CAF50;
-            color: white;
         }
 
-        button:hover {
-            background: #45a049;
+        .btn-operation:hover {
+            background-color: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .btn-scientific {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            border: none;
+        }
+
+        .btn-scientific:hover {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .btn-action {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: none;
+        }
+
+        .btn-action:hover {
+            background-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .btn-equals {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-equals:hover {
+            background-color: #1d4ed8;
+            color: #ffffff;
         }
     </style>
 
