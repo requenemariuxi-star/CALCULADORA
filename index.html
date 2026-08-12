@@ -111,51 +111,77 @@
     </head>
 
     <body>
-        <div class="calculadora">
 
-            <input type="text" id="pantalla" readonly>
+        <div class="container px-3">
+            <div class="calculator-card mx-auto">
+                <div class="calculator-screen">
+                    <div id="history" class="history"></div>
+                    <div id="display" class="current-output">0</div>
+                </div>
 
-            <br>
+                <div class="p-4 bg-white">
+                    <div class="row g-2">
 
-            <button onclick="pantalla.value+='7'">7</button>
-            <button onclick="pantalla.value+='8'">8</button>
-            <button onclick="pantalla.value+='9'">9</button>
-            <button onclick="pantalla.value+='/'">÷</button>
+                        <div class="col-3"><button class="btn btn-calc btn-action w-100"
+                                onclick="clearDisplay()">AC</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-action w-100" onclick="deleteLast()"><i
+                                    class="fa-solid fa-delete-left"></i></button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendOperator('%')">%</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendOperator('/')">÷</button></div>
 
-            <br>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendScientific('Math.sin(')">sin</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('7')">7</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('8')">8</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('9')">9</button></div>
 
-            <button onclick="pantalla.value+='4'">4</button>
-            <button onclick="pantalla.value+='5'">5</button>
-            <button onclick="pantalla.value+='6'">6</button>
-            <button onclick="pantalla.value+='*'">×</button>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendScientific('Math.cos(')">cos</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('4')">4</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('5')">5</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendValue('6')">6</button></div>
 
-            <br>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendScientific('Math.tan(')">tan</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendValue('1')">1</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendValue('2')">2</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendValue('3')">3</button></div>
 
-            <button onclick="pantalla.value+='1'">1</button>
-            <button onclick="pantalla.value+='2'">2</button>
-            <button onclick="pantalla.value+='3'">3</button>
-            <button onclick="pantalla.value+='-'">-</button>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendScientific('Math.log10(')">log</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendValue('0')">0</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendValue('.')">.</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendOperator('*')">×</button></div>
 
-            <br>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendScientific('Math.sqrt(')">√</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
+                                onclick="appendOperator('**')">x^y</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendOperator('-')">-</button></div>
+                        <div class="col-3"><button class="btn btn-calc btn-operation w-100"
+                                onclick="appendOperator('+')">+</button></div>
 
-            <button onclick="pantalla.value+='0'">0</button>
-            <button onclick="pantalla.value+='.'">.</button>
-            <button onclick="pantalla.value+='+'">+</button>
-            <button onclick="pantalla.value=eval(pantalla.value)">=</button>
 
-            <br>
-
-            <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
-            <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
-            <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
-            <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
-
-            <br>
-
-            <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
-            <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
-            <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
-            <button onclick="pantalla.value=''">C</button>
+                        <div class="col-12"><button class="btn btn-calc btn-equals w-100"
+                                onclick="calculateResult()">=</button></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
