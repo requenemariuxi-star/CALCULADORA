@@ -56,58 +56,125 @@
         }
     </style>
 
-</head>
+    </head>
 
-<body>
-    <div class="calculadora">
+    <body>
+        <div class="calculadora">
 
-        <input type="text" id="pantalla" readonly>
+            <input type="text" id="pantalla" readonly>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value+='7'">7</button>
-        <button onclick="pantalla.value+='8'">8</button>
-        <button onclick="pantalla.value+='9'">9</button>
-        <button onclick="pantalla.value+='/'">÷</button>
+            <button onclick="pantalla.value+='7'">7</button>
+            <button onclick="pantalla.value+='8'">8</button>
+            <button onclick="pantalla.value+='9'">9</button>
+            <button onclick="pantalla.value+='/'">÷</button>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value+='4'">4</button>
-        <button onclick="pantalla.value+='5'">5</button>
-        <button onclick="pantalla.value+='6'">6</button>
-        <button onclick="pantalla.value+='*'">×</button>
+            <button onclick="pantalla.value+='4'">4</button>
+            <button onclick="pantalla.value+='5'">5</button>
+            <button onclick="pantalla.value+='6'">6</button>
+            <button onclick="pantalla.value+='*'">×</button>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value+='1'">1</button>
-        <button onclick="pantalla.value+='2'">2</button>
-        <button onclick="pantalla.value+='3'">3</button>
-        <button onclick="pantalla.value+='-'">-</button>
+            <button onclick="pantalla.value+='1'">1</button>
+            <button onclick="pantalla.value+='2'">2</button>
+            <button onclick="pantalla.value+='3'">3</button>
+            <button onclick="pantalla.value+='-'">-</button>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value+='0'">0</button>
-        <button onclick="pantalla.value+='.'">.</button>
-        <button onclick="pantalla.value+='+'">+</button>
-        <button onclick="pantalla.value=eval(pantalla.value)">=</button>
+            <button onclick="pantalla.value+='0'">0</button>
+            <button onclick="pantalla.value+='.'">.</button>
+            <button onclick="pantalla.value+='+'">+</button>
+            <button onclick="pantalla.value=eval(pantalla.value)">=</button>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
-        <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
-        <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
-        <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
+            <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
+            <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
+            <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
+            <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
 
-        <br>
+            <br>
 
-        <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
-        <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
-        <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
-        <button onclick="pantalla.value=''">C</button>
+            <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
+            <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
+            <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
+            <button onclick="pantalla.value=''">C</button>
 
-    </div>
+        </div>
 
 
-</body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <script>
+            let display = document.getElementById('display');
+            let history = document.getElementById('history');
+            let currentInput = '0';
+            let calculationHistory = '';
+
+            function updateDisplay() {
+                display.innerText = currentInput;
+                history.innerText = calculationHistory;
+            }
+
+            function appendValue(value) {
+                if (currentInput === '0' && value !== '.') {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+                updateDisplay();
+            }
+
+            function appendOperator(operator) {
+                currentInput += operator;
+                updateDisplay();
+            }
+
+            function appendScientific(func) {
+                if (currentInput === '0') {
+                    currentInput = func;
+                } else {
+                    currentInput += func;
+                }
+                updateDisplay();
+            }
+
+            function clearDisplay() {
+                currentInput = '0';
+                calculationHistory = '';
+                updateDisplay();
+            }
+
+            function deleteLast() {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+                updateDisplay();
+            }
+
+            function calculateResult() {
+                try {
+                    calculationHistory = currentInput;
+
+                    let evaluatedResult = eval(currentInput);
+                    currentInput = String(evaluatedResult);
+                    updateDisplay();
+                } catch (error) {
+                    currentInput = 'Error';
+                    updateDisplay();
+                    setTimeout(clearDisplay, 1500);
+                }
+            }
+        </script>
+    </body>
 
 </html>
