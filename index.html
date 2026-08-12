@@ -4,82 +4,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+
+    <title>Document</title>
 </head>
 
 <body>
+    <title>Calculadora</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <div class="container px-3">
-        <div class="calculator-card mx-auto">
-            <div class="calculator-screen">
-                <div id="history" class="history"></div>
-                <div id="display" class="current-output">0</div>
-            </div>
+        .calculator-card {
+            max-width: 480px;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
 
-            <div class="p-4 bg-white">
-                <div class="row g-2">
+        .calculator-screen {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            text-align: right;
+            border-bottom: 2px solid #e2e8f0;
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-action w-100"
-                            onclick="clearDisplay()">AC</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-action w-100" onclick="deleteLast()"><i
-                                class="fa-solid fa-delete-left"></i></button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendOperator('%')">%</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendOperator('/')">÷</button></div>
+        .calculator-screen .history {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            min-height: 1.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendScientific('Math.sin(')">sin</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('7')">7</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('8')">8</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('9')">9</button></div>
+        .calculator-screen .current-output {
+            font-size: 2.2rem;
+            font-weight: 600;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendScientific('Math.cos(')">cos</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('4')">4</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('5')">5</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendValue('6')">6</button></div>
+        .btn-calc {
+            font-weight: 600;
+            padding: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendScientific('Math.tan(')">tan</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendValue('1')">1</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendValue('2')">2</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendValue('3')">3</button></div>
+        .btn-calc:hover {
+            transform: translateY(-2px);
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendScientific('Math.log10(')">log</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendValue('0')">0</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendValue('.')">.</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendOperator('*')">×</button></div>
+        .btn-operation {
+            background-color: #e2e8f0;
+            color: #334155;
+            border: none;
+        }
 
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendScientific('Math.sqrt(')">√</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-scientific w-100"
-                            onclick="appendOperator('**')">x^y</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendOperator('-')">-</button></div>
-                    <div class="col-3"><button class="btn btn-calc btn-operation w-100"
-                            onclick="appendOperator('+')">+</button></div>
+        .btn-operation:hover {
+            background-color: #cbd5e1;
+            color: #0f172a;
+        }
 
+        .btn-scientific {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            border: none;
+        }
 
-                    <div class="col-12"><button class="btn btn-calc btn-equals w-100"
-                            onclick="calculateResult()">=</button></div>
-                </div>
-            </div>
+        .btn-scientific:hover {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .btn-action {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: none;
+        }
+
+        .btn-action:hover {
+            background-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .btn-equals {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-equals:hover {
+            background-color: #1d4ed8;
+            color: #ffffff;
+        }
+    </style>
+
+    </head>
+
+    <body>
+        <div class="calculadora">
+
+            <input type="text" id="pantalla" readonly>
+
+            <br>
+
+            <button onclick="pantalla.value+='7'">7</button>
+            <button onclick="pantalla.value+='8'">8</button>
+            <button onclick="pantalla.value+='9'">9</button>
+            <button onclick="pantalla.value+='/'">÷</button>
+
+            <br>
+
+            <button onclick="pantalla.value+='4'">4</button>
+            <button onclick="pantalla.value+='5'">5</button>
+            <button onclick="pantalla.value+='6'">6</button>
+            <button onclick="pantalla.value+='*'">×</button>
+
+            <br>
+
+            <button onclick="pantalla.value+='1'">1</button>
+            <button onclick="pantalla.value+='2'">2</button>
+            <button onclick="pantalla.value+='3'">3</button>
+            <button onclick="pantalla.value+='-'">-</button>
+
+            <br>
+
+            <button onclick="pantalla.value+='0'">0</button>
+            <button onclick="pantalla.value+='.'">.</button>
+            <button onclick="pantalla.value+='+'">+</button>
+            <button onclick="pantalla.value=eval(pantalla.value)">=</button>
+
+            <br>
+
+            <button onclick="pantalla.value=Math.sqrt(eval(pantalla.value))">√</button>
+            <button onclick="pantalla.value=Math.pow(eval(pantalla.value),2)">x²</button>
+            <button onclick="pantalla.value=Math.sin(eval(pantalla.value)*Math.PI/180)">sin</button>
+            <button onclick="pantalla.value=Math.cos(eval(pantalla.value)*Math.PI/180)">cos</button>
+
+            <br>
+
+            <button onclick="pantalla.value=Math.tan(eval(pantalla.value)*Math.PI/180)">tan</button>
+            <button onclick="pantalla.value=Math.log10(eval(pantalla.value))">log</button>
+            <button onclick="pantalla.value=Math.log(eval(pantalla.value))">ln</button>
+            <button onclick="pantalla.value=''">C</button>
+
         </div>
-    </div>
-</body>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <script>
+            let display = document.getElementById('display');
+            let history = document.getElementById('history');
+            let currentInput = '0';
+            let calculationHistory = '';
+
+            function updateDisplay() {
+                display.innerText = currentInput;
+                history.innerText = calculationHistory;
+            }
+
+            function appendValue(value) {
+                if (currentInput === '0' && value !== '.') {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+                updateDisplay();
+            }
+
+            function appendOperator(operator) {
+                currentInput += operator;
+                updateDisplay();
+            }
+
+            function appendScientific(func) {
+                if (currentInput === '0') {
+                    currentInput = func;
+                } else {
+                    currentInput += func;
+                }
+                updateDisplay();
+            }
+
+            function clearDisplay() {
+                currentInput = '0';
+                calculationHistory = '';
+                updateDisplay();
+            }
+
+            function deleteLast() {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+                updateDisplay();
+            }
+
+            function calculateResult() {
+                try {
+                    calculationHistory = currentInput;
+
+                    let evaluatedResult = eval(currentInput);
+                    currentInput = String(evaluatedResult);
+                    updateDisplay();
+                } catch (error) {
+                    currentInput = 'Error';
+                    updateDisplay();
+                    setTimeout(clearDisplay, 1500);
+                }
+            }
+        </script>
+    </body>
 
 </html>
